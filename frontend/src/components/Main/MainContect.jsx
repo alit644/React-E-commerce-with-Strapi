@@ -17,7 +17,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import { AddShoppingCartOutlined, Close } from "@mui/icons-material";
 import ProductDetails from "./ProductDetails";
-
+import CircularProgress from '@mui/material/CircularProgress';
 import { useGetproductByNameQuery } from "../../Redux/product";
 const MainContect = () => {
   const allProductsApi = "products?populate=*";
@@ -28,9 +28,13 @@ const MainContect = () => {
 
   const [myData, setmyData] = useState(allProductsApi);
   const { data, error, isLoading } = useGetproductByNameQuery(myData);
+  const [clickedProduct, setclickedProduct] = useState({});
 
   const handleAlignment = (event, newValue) => {
-    setmyData(newValue)
+    if (newValue !== null) {
+      
+      setmyData(newValue)
+    }
   };
 
   const [open, setOpen] = useState(false);
@@ -43,19 +47,22 @@ const MainContect = () => {
     setOpen(false);
   };
 
+
   if (error) {
     return (
       <Typography variant="h3" color="error">
-        Error 404
+        {error.
+// @ts-ignore
+        error}
       </Typography>
     );
   }
 
   if (isLoading) {
     return (
-      <Typography variant="h3" color="error">
-        Loading
-      </Typography>
+      <Box sx={{ display: 'flex' , justifyContent:'center' , alignItems:'center' , p:5 }}>
+      <CircularProgress />
+    </Box>
     );
   }
 
@@ -167,7 +174,10 @@ const MainContect = () => {
                 </CardContent>
                 <CardActions sx={{ justifyContent: "space-between" }}>
                   <Button
-                    onClick={handleClickOpen}
+                    onClick={() => {
+                      handleClickOpen()
+                      setclickedProduct(item)
+                    }}
                     sx={{ textTransform: "capitalize" }}
                     size="large"
                   >
@@ -205,7 +215,7 @@ const MainContect = () => {
             </IconButton>
           </Box>
 
-          <ProductDetails />
+          <ProductDetails clickedProduct={clickedProduct} />
         </Dialog>
       </Container>
     );

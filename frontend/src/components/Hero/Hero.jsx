@@ -13,11 +13,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 const mySlide = [
   {
     textTiele: "MEN",
-    imgLink: "src/images/banner-15.jpg",
+    imgLink: "./images/banner-15.jpg",
   },
   {
     textTiele: "WOMEN",
-    imgLink: "src/images/banner-25.jpg",
+    imgLink: "./images/banner-25.jpg",
   },
 ];
 // Import Swiper styles
@@ -100,7 +100,7 @@ const Hero = () => {
 
         <Box sx={{ display: { xs: "none", md: "block" }, minWidth: "26.6%" }}>
           <Box sx={{ position: "relative" }}>
-            <img width={"100%"} src="src/images/banner-17.jpg" alt="" />
+            <img width={"100%"} src="./images/banner-17.jpg" alt="" />
             <Stack
               sx={{
                 position: "absolute",
@@ -142,7 +142,7 @@ const Hero = () => {
             </Stack>
           </Box>
           <Box sx={{ position: "relative" }}>
-            <img width={"100%"} src="src/images/banner-16.jpg" alt="" />
+            <img width={"100%"} src="./images/banner-16.jpg" alt="" />
 
             <Stack
               sx={{
